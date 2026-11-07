@@ -1,25 +1,22 @@
 library phosphor_flutter;
 
 import 'package:flutter/widgets.dart';
+import 'package:phosphor_flutter/src/phosphor_icons_duotone.dart';
 
-class PhosphorIconData extends IconData {
-  const PhosphorIconData(int codePoint, String style)
-      : super(
-          codePoint,
-          fontFamily: 'Phosphor$style',
-          fontPackage: 'phosphor_flutter',
-          matchTextDirection: true,
-        );
-}
+/// Phosphor icons are plain [IconData]. Flutter made [IconData] a final
+/// class, so the package can no longer subclass it; these aliases keep
+/// existing type annotations compiling.
+typedef PhosphorIconData = IconData;
 
-class PhosphorFlatIconData extends PhosphorIconData {
-  const PhosphorFlatIconData(int codePoint, String style)
-      : super(codePoint, style);
-}
+/// See [PhosphorIconData].
+typedef PhosphorFlatIconData = IconData;
 
-class PhosphorDuotoneIconData extends PhosphorIconData {
-  const PhosphorDuotoneIconData(int codePoint, this.secondary)
-      : super(codePoint, 'Duotone');
-
-  final PhosphorIconData secondary;
+/// The back layer of a duotone icon, or null when [icon] is not a
+/// Phosphor duotone icon.
+IconData? phosphorDuotoneSecondary(IconData icon) {
+  if (icon.fontFamily != 'PhosphorDuotone' ||
+      icon.fontPackage != 'phosphor_flutter') {
+    return null;
+  }
+  return phosphorDuotoneBackgrounds[icon.codePoint];
 }

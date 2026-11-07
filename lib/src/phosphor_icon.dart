@@ -19,33 +19,33 @@ class PhosphorIcon extends Icon {
     this.duotoneSecondaryOpacity = 0.20,
     this.duotoneSecondaryColor,
   }) : super(
-          icon,
-          color: color,
-          fill: fill,
-          grade: grade,
-          key: key,
-          opticalSize: opticalSize,
-          semanticLabel: semanticLabel,
-          shadows: shadows,
-          size: size,
-          textDirection: textDirection,
-          weight: weight,
-        );
+         icon,
+         color: color,
+         fill: fill,
+         grade: grade,
+         key: key,
+         opticalSize: opticalSize,
+         semanticLabel: semanticLabel,
+         shadows: shadows,
+         size: size,
+         textDirection: textDirection,
+         weight: weight,
+       );
 
   final double duotoneSecondaryOpacity;
   final Color? duotoneSecondaryColor;
 
   @override
   Widget build(BuildContext context) {
-    if (icon is PhosphorDuotoneIconData) {
-      final duotoneIcon = icon as PhosphorDuotoneIconData;
+    final secondary = icon == null ? null : phosphorDuotoneSecondary(icon!);
+    if (secondary != null) {
       return Stack(
         alignment: Alignment.center,
         children: [
           Opacity(
             opacity: duotoneSecondaryOpacity,
             child: Icon(
-              duotoneIcon.secondary,
+              secondary,
               key: key,
               size: size,
               fill: fill,

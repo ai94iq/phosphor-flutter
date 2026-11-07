@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [3.0.0] - 2026/11/07
+
+### Breaking changes
+
+- Flutter made `IconData` a final class, so it can no longer be extended
+  and 2.x fails to compile on current Flutter. Icons are now plain const
+  `IconData`. `PhosphorIconData` and `PhosphorFlatIconData` are typedefs of
+  `IconData`, so type annotations keep working.
+- `PhosphorDuotoneIconData` and its `secondary` field are gone. Use
+  `phosphorDuotoneSecondary(icon)` to get a duotone icon's back layer;
+  `PhosphorIcon` draws both layers as before.
+- Minimum Dart 3.0 and Flutter 3.10.
+
 ## [2.1.0] - 2024/05/10
 
 ### New icons
